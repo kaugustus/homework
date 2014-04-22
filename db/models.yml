@@ -2,6 +2,10 @@ Roll:
     - rollone: integer
     - rolltwo: integer 
     
+Book:
+    - title: string
+    - author: string
+    
 # Example table for a typical Book model.
 #
 # Book:
