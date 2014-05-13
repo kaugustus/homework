@@ -9,18 +9,23 @@ Price: $<%=book["price"]%>
 </P>
 <p>
 <% review = Review.find_by("title" => book["title"])%>
-<% if review.present? %> Average star rating: <%= Review.average(:star_rating)%>
+<% avg = Review.where("title" => book["title"]).average("star_rating")%>
+
+<% if review.present? %> Average star rating: (<% if avg.blank? %> <i>Not yet rated </i><% else %><%= avg.round(2) %> stars <% end %>)
 <% end %>
 </p>
 
 <p>	
-<% reviews = Review.where("title" => book["title"]) %>
-
-<% if review.present? %> Reviews:</p>
+<% if review.present? %>
+Reviews:</p>
 <li>
-<% reviews.each do |review| %>
-<% review = Review.find_by("title" => book["title"]) %>
-<li><%= review["review"] %>
+	<% reviews = Review.where("title" => book["title"]) %>
+
+	<ul>
+	  <% reviews.each do |review| %>
+	    <% comment = Review.find_by("title" => book["title"]) %>
+
+<li><%= review %>
 </li>
 	  <% end %>
 	</ul>
