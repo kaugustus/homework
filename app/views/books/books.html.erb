@@ -1,0 +1,20 @@
+<h1>Books</h1>
+
+<% all_books = Book_data.read %>
+
+<% all_books.each do |book| %>
+
+<% review = Review.find_by("title" => book["title"])%>
+
+<li>
+	<strong>
+	<a href="/books/details?id=<%= book.id %>"><% book["title"] %></a>
+	</strong>
+	<% if review.present? %> 
+	, Average star rating: <%= Review.average(:star_rating)%>
+	<% end %>
+	
+</li>
+	
+	  <% end %>
+		  

@@ -6,6 +6,17 @@ Book:
     - title: string
     - author: string
     
+Book_data:
+    - title: string
+    - author: string
+    - price: integer
+
+Review:
+    - title: string
+    - star_rating: integer
+    - review: string
+    
+    
 # Example table for a typical Book model.
 #
 # Book:

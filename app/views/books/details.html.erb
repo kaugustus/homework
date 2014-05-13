@@ -1,0 +1,15 @@
+<h1>details</h1>
+
+<% book_id = params["id"] %>
+<% book = Book.read(book_id) %>
+
+<h2><%= book["title"] %> (<%= book["author"] %>)</h2>
+
+<p>
+Price
+
+Average star rating
+
+Reviews
+
+</p>
