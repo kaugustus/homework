@@ -1,20 +1,37 @@
-<h1>Books</h1>
+<h1>Book Store</h1>
 
+<h2>Editor's Pick'</h2>
 <% all_books = Book_data.read %>
 
 <% all_books.each do |book| %>
 
 <% review = Review.find_by("title" => book["title"])%>
 
+<% avg = Review.where("title" => book["title"]).average("star_rating")%>
+
+<ul>
+	<li>
+			<a href="/books/details?id=<%= book.id %>"><%= (book["title" => "Orphan Train"] %></a>
+			<% if review.present? %> 
+			, Average star rating: (<% if avg.blank? %> <i>Not yet rated </i><% else %> <%= avg.round(2) %> stars
+
+		</li>
+		</ul>	
+			
+
+
+<h2>Catalogue</h2>
+	
+<ul>
+
 <li>
-	<strong>
-	<a href="/books/details?id=<%= book.id %>"><% book["title"] %></a>
-	</strong>
+	<a href="/books/details?id=<%= book.id %>"><%= book["title"] %></a>
 	<% if review.present? %> 
-	, Average star rating: <%= Review.average(:star_rating)%>
+	, Average star rating: (<% if avg.blank? %> <i>Not yet rated </i><% else %> <%= avg.round(2) %> stars
+	<% end %>)
 	<% end %>
 	
 </li>
-	
+</ul>	
 	  <% end %>
 		  
